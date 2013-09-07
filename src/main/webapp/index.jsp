@@ -69,7 +69,7 @@ limitations under the License.
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">Glassware Starter Project: Java Edition</a>
+      <a class="brand" href="#">[Emulated] Glassware Starter Project: Java Edition</a>
     </div>
   </div>
 </div>
