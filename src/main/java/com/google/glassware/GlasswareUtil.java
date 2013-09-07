@@ -28,4 +28,19 @@ public final class GlasswareUtil {
         
         return "";
     }
+    
+    public static final String getCustomWelcomeMessage(){
+        FileInputStream authPropertiesStream;
+
+        try {
+            authPropertiesStream = new FileInputStream("./src/main/resources/oauth.properties");
+            Properties authProperties = new Properties();
+            authProperties.load(authPropertiesStream);
+            return authProperties.getProperty("quick_start_hello_world");
+        } catch (IOException e) {
+            LOG.warning("Failed to retrieve the welcome message :" + e.getMessage());
+        }
+        
+        return "";
+    }
 }

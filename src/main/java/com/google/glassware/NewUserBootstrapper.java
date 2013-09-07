@@ -15,6 +15,11 @@
  */
 package com.google.glassware;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.mirror.model.Contact;
@@ -22,11 +27,6 @@ import com.google.api.services.mirror.model.NotificationConfig;
 import com.google.api.services.mirror.model.Subscription;
 import com.google.api.services.mirror.model.TimelineItem;
 import com.google.common.collect.Lists;
-
-import java.io.IOException;
-import java.util.logging.Logger;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Utility functions used when users first authenticate with this service
@@ -36,6 +36,8 @@ import javax.servlet.http.HttpServletRequest;
 public class NewUserBootstrapper {
   private static final Logger LOG = Logger.getLogger(NewUserBootstrapper.class.getSimpleName());
 
+  private static final String WELCOME_MESSAGE = GlasswareUtil.getCustomWelcomeMessage();
+  
   /**
    * Bootstrap a new user. Do all of the typical actions for a new user:
    * <ul>
@@ -70,7 +72,7 @@ public class NewUserBootstrapper {
 
     // Send welcome timeline item
     TimelineItem timelineItem = new TimelineItem();
-    timelineItem.setText("Welcome to the Glass Java Quick Start");
+    timelineItem.setText(WELCOME_MESSAGE);
     timelineItem.setNotification(new NotificationConfig().setLevel("DEFAULT"));
     TimelineItem insertedItem = MirrorClient.insertTimelineItem(credential, timelineItem);
     LOG.info("Bootstrapper inserted welcome message " + insertedItem.getId() + " for user "
