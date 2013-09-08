@@ -70,11 +70,9 @@ public class AuthServlet extends HttpServlet {
           res.sendRedirect(WebUtil.buildUrl(req, "/"));
       }catch (IllegalArgumentException e){
           LOG.warning(e.getMessage());  
-      }finally{
-          // Redirect back to index
           res.sendRedirect(WebUtil.buildUrl(req, "/"));
       }
-
+      
       return;
     }
 
